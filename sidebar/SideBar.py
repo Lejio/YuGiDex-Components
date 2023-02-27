@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import QRect, Property, QPropertyAnimation, QEasingCurve, Qt, QPoint, QEvent, QObject
+from PySide6.QtCore import QRect, Property, QPropertyAnimation, QEasingCurve, Qt, QEvent
 from PySide6.QtGui import QPainter, QColor, QEnterEvent
 
 class SideBar(QWidget):
@@ -94,22 +94,6 @@ class SideBar(QWidget):
         p.drawRect(rect)
         
         p.end()
-        
-    ###############################################################################################
-    # Depricated events. I was experienting with specific mouse move event hoping it would achieve
-    # a mouse hover effect I was looking for. Didn't quite work out.
-    ###############################################################################################
-    
-    # def mousePressEvent(self, e):
-        
-    #     self.anim.setEndValue(self.minimumSize)
-    #     self.anim.start()
-        
-    # def mouseMoveEvent(self, e):
-        
-    #     self.anim.setEndValue(self.maxSize)
-    #     self.anim.start()
-        # self.anim.setEndValue(self.minimumSize)
 
     ###############################################################################################
     # In order to run animations, you need to set up setters and getters for the custom property
