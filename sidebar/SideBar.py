@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QPushButton, QVBoxLayout
 from PySide6.QtCore import QRect, Property, QPropertyAnimation, QEasingCurve, Qt, QEvent
 from PySide6.QtGui import QPainter, QColor, QEnterEvent
 
@@ -7,6 +7,7 @@ class SideBar(QWidget):
     def __init__(self,
                  width = 50,
                  height = 0,
+                 expandMultiplier = 5,
                  color = QColor("lightgray"),
                  setCurve = QEasingCurve.Type.Linear):
         
@@ -16,12 +17,11 @@ class SideBar(QWidget):
         
         self.color = color
         self.setCurve = setCurve
-        self.maxSize = self.currWidth * 5
+        self.maxSize = self.currWidth * expandMultiplier
         self.minimumSize = width
         
         self.setFixedWidth(width)
 
-        
         # This sets up the animation
         self.anim = QPropertyAnimation(self, b"changewidth")
         self.anim.setDuration(500)
@@ -29,10 +29,18 @@ class SideBar(QWidget):
         self.anim.setEasingCurve(self.setCurve)
         self.setMouseTracking(True)
         
-        # This is used to "connect" a widget to an event filter. So now ever single event 
-        # (related to this widget) will be passed to the eventfilter.
-        # Here, I am installing an event filter for this current widget (which is just a rectangle)
-        self.installEventFilter(self)
+        self.buttonlayout = QVBoxLayout()
+        self.button1 = QPushButton("Test One")
+        self.button1.setStyleSheet("""
+                                   background-color: black;
+                                   """)
+        self.button2 = QPushButton("Test Two")
+        self.button3 = QPushButton("Test Three")
+        
+        self.buttonlayout.addWidget(self.button1)
+        self.buttonlayout.addWidget(self.button2)
+        
+        self.setLayout(self.buttonlayout)
         
     
     ###############################################################################################
