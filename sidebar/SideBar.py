@@ -15,14 +15,14 @@ class SideBar(QWidget):
         self.currHeight = height
         
         self.color = color
-
-        self.setFixedWidth(width)
         self.setCurve = setCurve
         self.maxSize = self.currWidth * 5
         self.minimumSize = width
         
+        self.setFixedWidth(width)
+
         
-        # This here sets up the animation
+        # This sets up the animation
         self.anim = QPropertyAnimation(self, b"changewidth")
         self.anim.setDuration(500)
         self.anim.setStartValue(width)
